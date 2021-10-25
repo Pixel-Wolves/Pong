@@ -64,6 +64,24 @@ function draw()
       gameState = "start";
     }
   }
+  else if (gameState === "p1Wins"){
+    text("Player 1 Wins! press R to restart", canvas.width/2-120, windowHeight/4*2.7);
+    
+    if(keyIsDown(82)){
+      playerScore = 0;
+      computerScore = 0;
+      gameState = "start";
+    }
+  }
+  else if (gameState === "p2Wins"){
+    text("Player 2 Wins! press R to restart", canvas.width/2-120, windowHeight/4*2.7);
+    
+    if(keyIsDown(82)){
+      playerScore = 0;
+      computerScore = 0;
+      gameState = "start";
+    }
+  }
   
   // P1
   playerPaddle.xPosition = canvas.width - 10;
@@ -99,8 +117,16 @@ function draw()
     reset();
   }
   
-  if(playerScore === 5 || computerScore === 5){
+  if(playerScore === 5 && multiplayer == false || computerScore === 5 && multiplayer == false){
     gameState = "end";
+  }
+  else if (playerScore === 5 && multiplayer == true || computerScore === 5 && multiplayer == true){
+    if(playerScore > computerScore){
+      gameState = "p1Wins";
+    }
+    else if (playerScore < computerScore){
+      gameState = "p2Wins";
+    }
   }
 }
 

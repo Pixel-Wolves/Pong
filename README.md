@@ -1,7 +1,7 @@
 # Pong
 
 Last Update:
-Fixed the "Game Over!, press R to restart" text now appears at the center (x position) of the screen.
+If you're on multiplayer mode, instead of the Game Over text, the name of the winner is displayed.
 
 Issues:
-If the paddle hits the ball from the side, the ball stucks inside the paddle
+If the paddle hits the ball from the side, the ball stucks inside the paddle.
