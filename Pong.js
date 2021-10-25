@@ -56,7 +56,7 @@ function draw()
     text("WARNING: Score will be Reset", canvas.width/2-100, windowHeight/4*3.5);
   }
   else if (gameState === "end"){
-    text("Game Over! press R to restart", 120, 305);
+    text("Game Over! press R to restart", canvas.width/2-100, windowHeight/4*2.7);
     
     if(keyIsDown(82)){
       playerScore = 0;
