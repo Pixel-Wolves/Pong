@@ -13,6 +13,9 @@ function setup()
 {
   canvas = createCanvas(windowWidth, windowHeight);
   playerPaddle = new Paddle();
+
+  playerPaddle.yPosition = windowHeight/2 - 50;
+
   computerPaddle = new Paddle();
   ball = new Ball();
   
