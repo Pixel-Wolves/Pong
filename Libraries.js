@@ -11,6 +11,8 @@ function drawnet(){
 }
   
 function objectDisplay(){
+    strokeWeight(1);
+
     // P1
     playerPaddle.xPosition = canvas.width - 10;
     playerMovement();
@@ -29,6 +31,7 @@ function serve(){
     if(keyIsDown(32) && gameState === "start"){
         ball_velocityX = random(2,5);
         ball_velocityY = random(2,5);
+        shootSound.play();
         gameState = "play";
     }
 }
@@ -44,14 +47,17 @@ function bounceBall(){
     // Bounce with Paddles
     if(ball.xPosition > canvas.width -15 && ball.yPosition > playerPaddle.yPosition && ball.yPosition < playerPaddle.yPosition + 100 && ball.xPosition < canvas.width){
       ball_velocityX = ball_velocityX * -1.03;
+      hitSound.play();
     }
     else if(ball.xPosition < 15 && ball.yPosition > computerPaddle.yPosition && ball.yPosition < computerPaddle.yPosition + 100 && ball.xPosition > 0){
       ball_velocityX = ball_velocityX * -1.03;
+      hitSound.play();
     }
     
     // Bounce with Edges
     if(ball.yPosition > canvas.height - 10 || ball.yPosition < 10){
       ball_velocityY = ball_velocityY * -1.03;
+      hitSound.play();
     }
 }
 
@@ -101,6 +107,7 @@ function startOver(){
             computerScore = 0;
             playerScore = 0;
             multiplayer = true;
+            selectSound.play();
         }
         }
         else{
@@ -110,6 +117,7 @@ function startOver(){
             computerScore = 0;
             playerScore = 0;
             multiplayer = false;
+            selectSound.play();
         }
         }
         text("WARNING: Score will be Reset", canvas.width/2-100, windowHeight/4*3.5);
@@ -120,6 +128,7 @@ function startOver(){
         if(keyIsDown(82)){
         playerScore = 0;
         computerScore = 0;
+        selectSound.play();
         gameState = "start";
         }
     }
@@ -129,6 +138,7 @@ function startOver(){
         if(keyIsDown(82)){
         playerScore = 0;
         computerScore = 0;
+        selectSound.play();
         gameState = "start";
         }
     }
@@ -138,6 +148,7 @@ function startOver(){
         if(keyIsDown(82)){
         playerScore = 0;
         computerScore = 0;
+        selectSound.play();
         gameState = "start";
         }
     }
@@ -147,22 +158,27 @@ function addScore(){
     if(ball.xPosition > canvas.width){
         computerScore += 1;
         gameState = "start";
+        scoreSound.play();
         reset();
     }
     else if (ball.xPosition < 0){
         playerScore += 1;
         gameState = "start";
+        scoreSound.play();
         reset();
     }
 
-    if(playerScore === 5 && multiplayer == false || computerScore === 5 && multiplayer == false){
+    if(playerScore === 5 && multiplayer == false && gameState == "start" || computerScore === 5 && multiplayer == false && gameState == "start"){
         gameState = "end";
+        scoreSound.play();
     }
     else if (playerScore === 5 && multiplayer == true || computerScore === 5 && multiplayer == true){
         if(playerScore > computerScore){
+            scoreSound.play();
             gameState = "p1Wins";
         }
         else if (playerScore < computerScore){
+            scoreSound.play();
             gameState = "p2Wins";
         }
     }

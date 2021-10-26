@@ -8,6 +8,17 @@ var gameState = "start";
 var multiplayer = false;
 var playerScore = 0;
 var computerScore = 0;
+var hitSound;
+var scoreSound;
+var selectSound;
+var shootSound;
+
+function preload(){
+  hitSound = loadSound("Hit.wav");
+  scoreSound = loadSound("Score.wav");
+  selectSound = loadSound("Select.wav");
+  shootSound = loadSound("Shoot.wav");
+}
 
 function setup() 
 {
@@ -26,7 +37,7 @@ function setup()
 function draw() 
 {
   // Background
-  background("darkGray");
+  background("lightBlue");
   textSize(16);
   drawnet();
   drawScores();
