@@ -12,8 +12,11 @@ var hitSound;
 var scoreSound;
 var selectSound;
 var shootSound;
+var backgroundColor = "", bg;
+var loading;
 
 function preload(){
+  getBackgroundImg();
   hitSound = loadSound("Hit.wav");
   scoreSound = loadSound("Score.wav");
   selectSound = loadSound("Select.wav");
@@ -37,7 +40,8 @@ function setup()
 function draw() 
 {
   // Background
-  background("lightBlue");
+  background(backgroundColor);
+
   textSize(16);
   drawnet();
   drawScores();
@@ -47,4 +51,12 @@ function draw()
   ballMovement();
   bounceBall();
   addScore();
+
+  if(backgroundColor == ""){
+    rect(0,0,canvas.width,canvas.height);
+    loading = true;
+  }
+  else{
+    loading = false;
+  }
 }

@@ -28,7 +28,7 @@ function objectDisplay(){
 }
 
 function serve(){
-    if(keyIsDown(32) && gameState === "start"){
+    if(keyIsDown(32) && gameState === "start" && loading == false){
         ball_velocityX = random(2,5);
         ball_velocityY = random(2,5);
         shootSound.play();
@@ -67,12 +67,12 @@ function ballMovement(){
 }
 
 function playerMovement(){
-    if(keyIsDown(DOWN_ARROW) && playerPaddle.yPosition < canvas.height - 100)
+    if(keyIsDown(DOWN_ARROW) && playerPaddle.yPosition < canvas.height - 100 && loading == false)
     {
       playerPaddle.yPosition += 5;
     }
     
-    if(keyIsDown(UP_ARROW) && playerPaddle.yPosition > 0)
+    if(keyIsDown(UP_ARROW) && playerPaddle.yPosition > 0 && loading == false)
     {
       playerPaddle.yPosition -= 5;
     }
@@ -103,7 +103,7 @@ function startOver(){
         if(multiplayer === false){
         text("Press Q for multiplayer", canvas.width/2-75, windowHeight/4*3);
         
-        if(keyIsDown(81)){
+        if(keyIsDown(81) && loading == false){
             computerScore = 0;
             playerScore = 0;
             multiplayer = true;
@@ -113,7 +113,7 @@ function startOver(){
         else{
         text("Press E for single player", canvas.width/2-75, windowHeight/4*3);
         
-        if(keyIsDown(69)){
+        if(keyIsDown(69) && loading == false){
             computerScore = 0;
             playerScore = 0;
             multiplayer = false;
@@ -125,7 +125,7 @@ function startOver(){
     else if (gameState === "end"){
         text("Game Over! press R to restart", canvas.width/2-100, windowHeight/4*2.7);
         
-        if(keyIsDown(82)){
+        if(keyIsDown(82) && loading == false){
         playerScore = 0;
         computerScore = 0;
         selectSound.play();
@@ -135,7 +135,7 @@ function startOver(){
     else if (gameState === "p1Wins"){
         text("Player 1 Wins! press R to restart", canvas.width/2-120, windowHeight/4*2.7);
         
-        if(keyIsDown(82)){
+        if(keyIsDown(82) && loading == false){
         playerScore = 0;
         computerScore = 0;
         selectSound.play();
@@ -145,7 +145,7 @@ function startOver(){
     else if (gameState === "p2Wins"){
         text("Player 2 Wins! press R to restart", canvas.width/2-120, windowHeight/4*2.7);
         
-        if(keyIsDown(82)){
+        if(keyIsDown(82) && loading == false){
         playerScore = 0;
         computerScore = 0;
         selectSound.play();
@@ -182,4 +182,27 @@ function addScore(){
             gameState = "p2Wins";
         }
     }
+}
+
+async function getBackgroundImg(){
+    var response = await fetch("https://worldtimeapi.org/api/timezone/America/Mexico_City");
+    var responseJSON = await response.json();
+    
+    var dateTime = responseJSON.datetime;
+    var hour = dateTime.slice(11,13);
+
+    if(hour >= 06 && hour<=14){
+        bg = "cyan";
+        fill("black")
+    }
+    else if(hour >= 14 && hour<=18){
+        bg = "orange";
+        fill("black")
+    }
+    else{
+        bg = "darkBlue";
+        fill("white")
+    }
+
+    backgroundColor = bg;
 }
