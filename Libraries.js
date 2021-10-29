@@ -193,7 +193,6 @@ async function getBackgroundImg(){
 
     if(hour >= 06 && hour<=14){
         bg = "cyan";
-        fill("white")
     }
     else if(hour >= 14 && hour<=18){
         bg = "orange";
