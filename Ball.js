@@ -4,7 +4,7 @@ class Ball
   {
     this.xPosition=200;
     this.yPosition=200;
-    this.radius=15;
+    this.radius=canvas.width/80;
   }
   
   display()

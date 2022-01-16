@@ -13,7 +13,6 @@ var scoreSound;
 var selectSound;
 var shootSound;
 var backgroundColor = "", bg;
-var loading;
 
 function preload(){
   getBackgroundImg();
@@ -42,7 +41,7 @@ function draw()
   // Background
   background(backgroundColor);
 
-  textSize(16);
+  textSize(canvas.width/60);
   drawnet();
   drawScores();
   startOver();

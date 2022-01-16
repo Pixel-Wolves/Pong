@@ -4,8 +4,8 @@ class Paddle
   {
     this.xPosition=390;
     this.yPosition=160;
-    this.widht=10;
-    this.height=100;
+    this.widht=canvas.width/120;
+    this.height=canvas.height/4;
   }
   
   display()
